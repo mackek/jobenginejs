@@ -1,6 +1,7 @@
 
 var agent_id = 1;
-if (!window.location) {
+if (typeof window === 'undefined') {
+  var node = true;
   var program = require('commander');
   var JobEngine = require('./dist/jobengine');
 
@@ -16,7 +17,8 @@ if (!window.location) {
 
 var job_engine = JobEngine;
 var agent = {};
-job_engine.init(agent_id, function(_agent) {
+var tasks = 3
+job_engine.init(agent_id,{tasks: tasks}, function(_agent) {
   agent = _agent;
   console.log("Hi");
 });
